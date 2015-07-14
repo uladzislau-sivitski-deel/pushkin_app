@@ -13,8 +13,11 @@
 
 ActiveRecord::Schema.define(version: 20150710111140) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "poems", force: :cascade do |t|
-    t.text   "title"
+    t.text     "title"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
