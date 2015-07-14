@@ -41,10 +41,10 @@ namespace :db do
   end
 
   task :add => :environment do
-      poem = Poem.new
-      poem.title = "Hello solar, son of a..."
-      poem.content = "I hate you so much."
-      poem.save
+      require 'elasticsearch/transport'
+
+client = Elasticsearch::Client.new
+response = client.perform_request 'GET', '_cluster/health'
   end
 
 
@@ -55,13 +55,11 @@ namespace :db do
     str2 = @question.split('%WORD%')[0]
     str3 = @question.split('%WORD%')[1]
 
-    result = Poem.search do
-      fulltext str1 do
-      query_phrase_slop 1
-    end
-  end
 
-    answer = result.results[0].content
+
+    result = Poem.search query: { match_phrase:  { content: {query: "Буря мглою небо кроет, Вихри крутя", slop: 1} } }
+
+    answer = result.first.content
     answer.gsub!(/[\n]/,' ')
     answer = answer[answer.index(str2),answer.index(str3)]
     answer.gsub!(str2,' ')

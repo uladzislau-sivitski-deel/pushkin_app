@@ -1,13 +1,11 @@
+require 'elasticsearch/model'
+
 class Poem < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
+
   scope :random, -> { order('random()') }
 
-  searchable do
-    text :title, :content
-    time    :created_at
-    time    :updated_at
-    string  :sort_title do
-      title.downcase.gsub(/^(an?|the)/, '')
-    end
-  end
 
 end

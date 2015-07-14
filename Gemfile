@@ -25,6 +25,10 @@ gem 'sunspot_rails' #форк для rails
 gem 'sunspot_solr'  #сам Solr
 gem 'progress_bar'  #нужен для индексирования
 
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+gem 'elasticsearch-transport'
+
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'

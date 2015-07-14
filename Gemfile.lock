@@ -64,10 +64,26 @@ GEM
     debug_inspector (0.0.2)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
+    elasticsearch (1.0.12)
+      elasticsearch-api (= 1.0.12)
+      elasticsearch-transport (= 1.0.12)
+    elasticsearch-api (1.0.12)
+      multi_json
+    elasticsearch-model (0.1.7)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.7)
+    elasticsearch-transport (1.0.12)
+      faraday
+      multi_json
     erubis (2.7.0)
     execjs (2.5.2)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    hashie (3.4.2)
     highline (1.6.21)
     hitimes (1.2.2)
     http-cookie (1.0.2)
@@ -101,6 +117,7 @@ GEM
     mini_portile (0.6.2)
     minitest (5.7.0)
     multi_json (1.11.2)
+    multipart-post (2.0.0)
     net-http-digest_auth (1.4)
     net-http-persistent (2.9.4)
     nokogiri (1.6.6.2)
@@ -244,6 +261,9 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   colored
+  elasticsearch-model
+  elasticsearch-rails
+  elasticsearch-transport
   execjs
   jbuilder (~> 2.0)
   jquery-rails
