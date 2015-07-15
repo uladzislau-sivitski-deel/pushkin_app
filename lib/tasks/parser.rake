@@ -80,7 +80,7 @@ namespace :db do
     task :testQ => :environment do
 
 TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
-  @question='Отчизны внемлем призыванье'
+  @question='О други, Августу мольбы мои несите'
   @id = '111'
 
   results = Poem.content(@question)
