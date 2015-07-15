@@ -3,6 +3,10 @@ class QuizController < ApplicationController
 TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
 
   def index
+
+
+    render nothing: true
+
   if params[:level] == 1
   @question=params[:question]
   @id = params[:id]
