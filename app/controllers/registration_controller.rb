@@ -3,12 +3,6 @@ class RegistrationController < ApplicationController
   def index
 
  #   @question = params[:question]
-
-
-     poem = Poem.new
-      poem.content = params[:token]
-      poem.save
-
   #  str1 = @question.gsub('%WORD%','')
   #  str2 = @question.split('%WORD%')[0]
    # str3 = @question.split('%WORD%')[1]
@@ -21,6 +15,7 @@ class RegistrationController < ApplicationController
   #  answer.gsub!(/[\n]/,' ')
    # answer = answer[answer.index(str2),answer.index(str3)]
    # answer.gsub!(str2,' ')
+
     render json: {answer: 'снежные'}
 
 end
