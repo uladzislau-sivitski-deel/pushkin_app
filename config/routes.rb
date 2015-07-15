@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   get 'quiz' => 'quiz#index'
 
   get 'registration' => 'registration#index'
+
+
+
+
+
   get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
