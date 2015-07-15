@@ -2,7 +2,7 @@ class RegistrationController < ApplicationController
 
   def index
 
-  # if request.post?
+  if request.post?
  #   @question = params[:question]
     Rails.application.config.my_config = params[:token]
 
@@ -23,5 +23,5 @@ class RegistrationController < ApplicationController
 
     render json: {answer: 'снежные'}
   end
-#end
+end
 end
