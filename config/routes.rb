@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'quiz' => 'quiz#index'
+  post 'quiz' => 'quiz#index'
 
   get 'registration' => 'registration#index'
   post 'registration' => 'registration#index'

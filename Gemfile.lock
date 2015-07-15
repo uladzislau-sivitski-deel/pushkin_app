@@ -64,27 +64,10 @@ GEM
     debug_inspector (0.0.2)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
-    elasticsearch (1.0.12)
-      elasticsearch-api (= 1.0.12)
-      elasticsearch-transport (= 1.0.12)
-    elasticsearch-api (1.0.12)
-      multi_json
-    elasticsearch-model (0.1.7)
-      activesupport (> 3)
-      elasticsearch (> 0.4)
-      hashie
-    elasticsearch-rails (0.1.7)
-    elasticsearch-transport (1.0.12)
-      faraday
-      multi_json
     erubis (2.7.0)
     execjs (2.5.2)
-    faraday (0.9.1)
-      multipart-post (>= 1.2, < 3)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
-    hashie (3.4.2)
-    highline (1.6.21)
     hitimes (1.2.2)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -117,21 +100,19 @@ GEM
     mini_portile (0.6.2)
     minitest (5.7.0)
     multi_json (1.11.2)
-    multipart-post (2.0.0)
     net-http-digest_auth (1.4)
     net-http-persistent (2.9.4)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     ntlm-http (0.1.1)
-    options (2.3.2)
     paper_trail (3.0.8)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
     pg (0.18.2)
-    pr_geohash (1.0.0)
-    progress_bar (1.0.3)
-      highline (~> 1.6.1)
-      options (~> 2.3.0)
+    pg_search (1.0.4)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -181,8 +162,6 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     retryable (1.3.6)
-    rsolr (1.0.12)
-      builder (>= 2.1.2)
     sass (3.4.15)
     sass-rails (5.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -220,14 +199,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    sunspot (2.2.0)
-      pr_geohash (~> 1.0)
-      rsolr (~> 1.0.7)
-    sunspot_rails (2.2.0)
-      nokogiri
-      rails (>= 3)
-      sunspot (= 2.2.0)
-    sunspot_solr (2.2.0)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -261,16 +232,13 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   colored
-  elasticsearch-model
-  elasticsearch-rails
-  elasticsearch-transport
   execjs
   jbuilder (~> 2.0)
   jquery-rails
   mechanize
   paper_trail (~> 3.0.1)
   pg
-  progress_bar
+  pg_search
   pry-rails
   rails (= 4.2.3)
   rails_12factor
@@ -284,8 +252,6 @@ DEPENDENCIES
   simple_form
   sinatra (>= 1.3.0)
   spring
-  sunspot_rails
-  sunspot_solr
   therubyracer
   turbolinks
   uglifier (>= 1.3.0)

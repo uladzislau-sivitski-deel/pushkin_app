@@ -40,16 +40,10 @@ namespace :db do
 
   end
 
-  task :add => :environment do
-      require 'elasticsearch/transport'
-
-client = Elasticsearch::Client.new
-response = client.perform_request 'GET', '_cluster/health'
-  end
 
 
   task :testReg => :environment do
-  @question='Буря мглою небо кроет, Вихри %WORD% крутя'
+  @question='Буря мглою небо кроет, Вихри  крутя'
 
     str1 = @question.gsub('%WORD%','')
     str2 = @question.split('%WORD%')[0]
@@ -64,6 +58,45 @@ response = client.perform_request 'GET', '_cluster/health'
     answer = answer[answer.index(str2),answer.index(str3)]
     answer.gsub!(str2,' ')
     puts answer
+
+
+
+     @question=params[:question]
+  @id = params[:id]
+
+  results = Poem.content(@question)
+
+
+  uri = URI("http://pushkin-contest.ror.by/quiz")
+
+ parameters = {
+  answer: results.first.title,
+  token: TOKEN,
+  task_id:  @id
+ }
+
+  end
+
+    task :testQ => :environment do
+
+TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
+  @question='Отчизны внемлем призыванье'
+  @id = '111'
+
+  results = Poem.content(@question)
+
+  puts results.first.title
+
+  uri = URI("http://pushkin-contest.ror.by/quiz")
+
+ parameters = {
+  answer: results.first.title,
+  token: TOKEN,
+  task_id:  @id
+ }
+
+ puts parameters
+
 
   end
 

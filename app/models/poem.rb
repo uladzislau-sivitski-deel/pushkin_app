@@ -1,10 +1,7 @@
-require 'elasticsearch/model'
 
 class Poem < ActiveRecord::Base
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
-
-
+ include PgSearch
+ pg_search_scope :content, :against => :content
   scope :random, -> { order('random()') }
 
 

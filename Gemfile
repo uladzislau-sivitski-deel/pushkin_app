@@ -21,17 +21,12 @@ gem 'retryable', '~> 1.3.5'
 
 gem 'rails_12factor', group: :production
 
-gem 'sunspot_rails' #форк для rails
-gem 'sunspot_solr'  #сам Solr
-gem 'progress_bar'  #нужен для индексирования
-
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
-gem 'elasticsearch-transport'
 
 
 # Use sqlite3 as the database for Active Record
 gem 'pg'
+gem 'pg_search'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
