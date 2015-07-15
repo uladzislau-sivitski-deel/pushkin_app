@@ -5,8 +5,6 @@ class RegistrationController < ApplicationController
  #   @question = params[:question]
 
 
-
-     params[:token]
      poem = Poem.new
       poem.content = params[:token]
       poem.save
