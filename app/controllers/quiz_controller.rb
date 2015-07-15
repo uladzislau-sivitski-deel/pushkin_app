@@ -1,5 +1,5 @@
 class QuizController < ApplicationController
-
+skip_before_filter :verify_authenticity_token, :only => [:index]
 TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
 
   def index
