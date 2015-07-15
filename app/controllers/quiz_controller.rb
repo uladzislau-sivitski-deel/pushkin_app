@@ -4,9 +4,6 @@ TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
 
   def index
 
-
-  render nothing: true
-
   if params[:level] == 1
   @question=params[:question]
   @id = params[:id]
@@ -18,6 +15,7 @@ TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
     task_id:  @id
   }
   Net::HTTP.post_form(uri, parameters)
+  render nothing: true
   end
 
   end
