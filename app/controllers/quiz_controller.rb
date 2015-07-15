@@ -5,10 +5,11 @@ TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
   def index
 
  render nothing: true
+ @question=params[:question]
+  @id = params[:id]
+
 
   if params[:level] == 1
-  @question=params[:question]
-  @id = params[:id]
   results = Poem.content(@question)
   answ = results.first.title
   end
