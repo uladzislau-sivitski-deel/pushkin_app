@@ -77,7 +77,7 @@ namespace :db do
 
   end
 
-    task :testQ => :environment do
+    task :testQ1 => :environment do
 
 TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
   @question='О други, Августу мольбы мои несите'
@@ -96,6 +96,39 @@ TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
  }
 
  puts parameters
+
+
+  end
+
+      task :testQ2 => :environment do
+
+TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
+  @question='О други, %WORD% мольбы мои несите,'
+  @id = '111'
+
+ str1 = @question.gsub('%WORD%','')
+  str2 = @question.split('%WORD%')[0]
+  str3 = @question.split('%WORD%')[1]
+
+  results = Poem.content(str1)
+  answ = results.first.content
+  answ.gsub!(/[\n]/,' ')
+
+  answ = answ[answ.index(str2), answ.index(str3)]
+  answ = answ[answ.index(str2), answ.index(str3)]
+  answ.gsub!(str2,' ')
+
+   uri = URI("http://pushkin-contest.ror.by/quiz")
+
+ parameters = {
+  answer: answ.lstrip,
+  token: TOKEN,
+  task_id:  @id
+ }
+
+ puts parameters
+
+
 
 
   end
