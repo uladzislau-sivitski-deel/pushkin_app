@@ -3,7 +3,14 @@ class RegistrationController < ApplicationController
   def index
 
  #   @question = params[:question]
-    Rails.application.config.my_config = params[:token]
+
+
+
+     params[:token]
+     poem = Poem.new
+      poem.content = params[:token]
+      poem.save
+
   #  str1 = @question.gsub('%WORD%','')
   #  str2 = @question.split('%WORD%')[0]
    # str3 = @question.split('%WORD%')[1]
