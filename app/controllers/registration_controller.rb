@@ -1,7 +1,8 @@
 class RegistrationController < ApplicationController
 
-  def index
 
+  def index
+skip_before_filter :verify_authenticity_token, :only => [:index]
  #   @question = params[:question]
   #  str1 = @question.gsub('%WORD%','')
   #  str2 = @question.split('%WORD%')[0]
