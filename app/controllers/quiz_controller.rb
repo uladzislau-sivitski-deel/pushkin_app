@@ -53,15 +53,15 @@ answ = answ.strip.gsub(/[[:punct:]]\z/, '')
 
 
 if params[:level] == 3
-   @pos = 0
+@pos = 0
  arr = @question.split('\n')
  str1 = @question.gsub('%WORD%','')
  str1 = str1.gsub('\n','')
 
 
-results = Poem.content(str1)
-answ = results.first.content
-answ = answ.split(/[\n]/)
+ results = Poem.content(str1)
+ answ = results.first.content
+ answ = answ.split(/[\n]/)
 
 str2 = arr[0].split('%WORD%')[0]
 str3 = arr[0].split('%WORD%')[1]
@@ -89,7 +89,14 @@ if str3 != nil
   answ[1] = answ[1].gsub(str3,'')
 end
 answ[1] = answ[1].strip.gsub(/[[:punct:]]\z/, '')
-answ = answ[0] +', '+answ[1]
+
+
+
+
+
+answ = answ[0] +','+answ[1]
+
+puts answ
   end
 
 
