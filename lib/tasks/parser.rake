@@ -170,12 +170,15 @@ answ = answ.strip.gsub(/[[:punct:]]\z/, '')
    task :testQ3 => :environment do
 
 TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
-  @question='Утешься; %WORD% увял Овидиев венец!\nУвы, %WORD% толпы затерянный певец,'
+ #Великий день %WORD%\n%WORD% братской тризной поминая,
+  @question='Или %WORD% и Зарема\nОдни %WORD% мечты?'
   @id = '111'
   @pos = 0
  arr = @question.split('\n')
+ puts arr
  str1 = @question.gsub('%WORD%','')
- str1 = str1.gsub('\n','')
+ puts str1
+ str1 = str1.gsub('\n',' ')
 
 
  results = Poem.content(str1)
@@ -184,6 +187,11 @@ TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
 
 str2 = arr[0].split('%WORD%')[0]
 str3 = arr[0].split('%WORD%')[1]
+
+if str3 == nil
+  str3=''
+end
+
 
   answ.each do |str|
     @pos+=1
