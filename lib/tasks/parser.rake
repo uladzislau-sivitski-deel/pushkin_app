@@ -103,7 +103,7 @@ TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
       task :testQ2 => :environment do
 
 TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
-  @question='О други, %WORD% мольбы мои несите,'
+  @question='%WORD% приятнее поет'
   @id = '111'
 
  str1 = @question.gsub('%WORD%','')
@@ -128,8 +128,84 @@ TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
 
  puts parameters
 
+  end
+
+        task :testQ22 => :environment do
+
+TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
+  @question='Она приятнее %WORD% '
+  @id = '111'
+
+ str1 = @question.gsub('%WORD%','')
+  str2 = @question.split('%WORD%')[0]
+  str3 = @question.split('%WORD%')[1]
+
+  results = Poem.content(str1)
+  answ = results.first.content
+  answ = answ.split(/[\n]/)
 
 
+  answ.each do |str|
+    if str.include?(str2) && str.include?(str3)
+       answ = str
+       break
+    end
+  end
+
+answ = answ.gsub(str2,'')
+answ = answ.gsub(str3,'')
+answ = answ.strip.gsub(/[[:punct:]]\z/, '')
+
+   uri = URI("http://pushkin-contest.ror.by/quiz")
+
+ parameters = {
+  answer: answ.lstrip,
+  token: TOKEN,
+  task_id:  @id
+ }
+ puts parameters
+
+  end
+
+   task :testQ22 => :environment do
+
+TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
+  @question='Она %WORD% поет,\\n%WORD% соловей близ тихих вод '
+  @id = '111'
+
+ sear =
+
+ strings = @question.split(/[\n]/)
+
+ strings.each do |str|
+ str1 = str.gsub('%WORD%','')
+  str2 = str.split('%WORD%')[0]
+  str3 = str.split('%WORD%')[1]
+
+  results = Poem.content(str1)
+  answ = results.first.content
+  answ = answ.split(/[\n]/)
+
+
+  answ.each do |str|
+    if str.include?(str2) && str.include?(str3)
+       answ = str
+       break
+    end
+  end
+
+answ = answ.gsub(str2,'')
+answ = answ.gsub(str3,'')
+answ = answ.strip.gsub(/[[:punct:]]\z/, '')
+
+   uri = URI("http://pushkin-contest.ror.by/quiz")
+
+ parameters = {
+  answer: answ.lstrip,
+  token: TOKEN,
+  task_id:  @id
+ }
+ puts parameters
 
   end
 

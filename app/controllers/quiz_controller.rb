@@ -15,27 +15,48 @@ TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
   end
 
    if params[:level] == 2
-  str1 = @question.gsub('%WORD%','')
+ str1 = @question.gsub('%WORD%','')
   str2 = @question.split('%WORD%')[0]
   str3 = @question.split('%WORD%')[1]
 
   results = Poem.content(str1)
   answ = results.first.content
-  answ.gsub!(/[\n]/,' ')
+  answ = answ.split(/[\n]/)
 
-  answ = answ[answ.index(str2), answ.index(str3)]
-  answ = answ[answ.index(str2), answ.index(str3)]
-  answ.gsub!(str2,' ')
 
-  answ = answ.lstrip
-
+  answ.each do |str|
+    if str.include?(str2) && str.include?(str3)
+       answ = str
+       break
+    end
   end
 
+answ = answ.gsub(str2,'')
+answ = answ.gsub(str3,'')
+answ = answ.strip.gsub(/[[:punct:]]\z/, '')
+  end
+
+     if params[:level] == 3
+ str1 = @question.gsub('%WORD%','')
+  str2 = @question.split('%WORD%')[0]
+  str3 = @question.split('%WORD%')[1]
+
+  results = Poem.content(str1)
+  answ = results.first.content
+  answ = answ.split(/[\n]/)
 
 
+  answ.each do |str|
+    if str.include?(str2) && str.include?(str3)
+       answ = str
+       break
+    end
+  end
 
-
-
+answ = answ.gsub(str2,'')
+answ = answ.gsub(str3,'')
+answ = answ.strip.gsub(/[[:punct:]]\z/, '')
+  end
 
 
    uri = URI("http://pushkin.rubyroidlabs.com/quiz")
