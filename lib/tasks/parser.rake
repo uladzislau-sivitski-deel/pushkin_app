@@ -167,41 +167,58 @@ answ = answ.strip.gsub(/[[:punct:]]\z/, '')
 
   end
 
-   task :testQ22 => :environment do
+   task :testQ3 => :environment do
 
 TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
-  @question='Она %WORD% поет,\\n%WORD% соловей близ тихих вод '
+  @question='Кто страстью глупою не %WORD%,\nКому влюбиться %WORD%'
   @id = '111'
+  @pos = 0
+ arr = @question.split('\n')
+ str1 = @question.gsub('%WORD%','')
+ str1 = str1.gsub('\n','')
 
- sear =
 
- strings = @question.split(/[\n]/)
+ results = Poem.content(str1)
+ answ = results.first.content
+ answ = answ.split(/[\n]/)
 
- strings.each do |str|
- str1 = str.gsub('%WORD%','')
-  str2 = str.split('%WORD%')[0]
-  str3 = str.split('%WORD%')[1]
-
-  results = Poem.content(str1)
-  answ = results.first.content
-  answ = answ.split(/[\n]/)
-
+str2 = arr[0].split('%WORD%')[0]
+str3 = arr[0].split('%WORD%')[1]
 
   answ.each do |str|
+    @pos+=1
     if str.include?(str2) && str.include?(str3)
-       answ = str
+       answ[0] = str
+       answ[1] = answ[@pos]
        break
     end
   end
 
-answ = answ.gsub(str2,'')
-answ = answ.gsub(str3,'')
-answ = answ.strip.gsub(/[[:punct:]]\z/, '')
+answ[0] = answ[0].gsub(str2,'')
+if str3 != nil
+  answ[0] = answ[0].gsub(str3,'')
+end
+answ[0] = answ[0].strip.gsub(/[[:punct:]]\z/, '')
+
+
+str2 = arr[1].split('%WORD%')[0]
+str3 = arr[1].split('%WORD%')[1]
+answ[1] = answ[1].gsub(str2,'')
+if str3 != nil
+  answ[1] = answ[1].gsub(str3,'')
+end
+answ[1] = answ[1].strip.gsub(/[[:punct:]]\z/, '')
+
+
+
+
+
+answ = answ[0] +','+answ[1]
 
    uri = URI("http://pushkin-contest.ror.by/quiz")
 
  parameters = {
-  answer: answ.lstrip,
+  answer: answ,
   token: TOKEN,
   task_id:  @id
  }
