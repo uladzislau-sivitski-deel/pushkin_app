@@ -82,11 +82,66 @@ if str3 != nil
 end
 answ[1] = answ[1].strip.gsub(/[[:punct:]]\z/, '')
 
-
-
-
-
 answ = answ[0] +','+answ[1]
+  end
+
+  if params[:level] == 4
+
+@pos = 0
+ arr = @question.split(/[\n]/)
+
+ str1 = @question.gsub('%WORD%','')
+
+ str1 = str1.gsub(/[\n]/,' ')
+
+
+ results = Poem.content(str1)
+ answ = results.first.content
+ answ = answ.split(/[\n]/)
+
+str2 = arr[0].split('%WORD%')[0]
+str3 = arr[0].split('%WORD%')[1]
+
+if str3 == nil
+  str3=''
+end
+
+
+  answ.each do |str|
+    @pos+=1
+    if str.include?(str2) && str.include?(str3)
+       answ[0] = str
+       answ[1] = answ[@pos]
+       answ[2] = answ[@pos+1]
+       break
+    end
+  end
+
+answ[0] = answ[0].gsub(str2,'')
+if str3 != nil
+  answ[0] = answ[0].gsub(str3,'')
+end
+answ[0] = answ[0].strip.gsub(/[[:punct:]]\z/, '')
+
+
+str2 = arr[1].split('%WORD%')[0]
+str3 = arr[1].split('%WORD%')[1]
+answ[1] = answ[1].gsub(str2,'')
+if str3 != nil
+  answ[1] = answ[1].gsub(str3,'')
+end
+answ[1] = answ[1].strip.gsub(/[[:punct:]]\z/, '')
+
+str2 = arr[2].split('%WORD%')[0]
+str3 = arr[2].split('%WORD%')[1]
+answ[2] = answ[2].gsub(str2,'')
+if str3 != nil
+  answ[2] = answ[2].gsub(str3,'')
+end
+answ[2] = answ[2].strip.gsub(/[[:punct:]]\z/, '')
+
+
+answ = answ[0] +','+answ[1]+','+answ[2]
   end
 
 
