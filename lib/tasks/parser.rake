@@ -171,7 +171,7 @@ answ = answ.strip.gsub(/[[:punct:]]\z/, '')
 
 TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
  #Великий день %WORD%\n%WORD% братской тризной поминая,
-  @question='Ты их %WORD% налегке!\nГде %WORD% нашел их: в шустер-клубе'
+  @question='Но если я любим... %WORD%, о милый друг,\n%WORD% одушевить прощальный лиры звук'
   @id = '111'
   @pos = 0
  arr = @question.split('\n')
