@@ -170,7 +170,7 @@ answ = answ.strip.gsub(/[[:punct:]]\z/, '')
    task :testQ3 => :environment do
 
 TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
-  @question='Движенья %WORD%, игривый разговор\n     И %WORD% улыбки незабвенной.'
+  @question='Утешься; %WORD% увял Овидиев венец!\nУвы, %WORD% толпы затерянный певец,'
   @id = '111'
   @pos = 0
  arr = @question.split('\n')

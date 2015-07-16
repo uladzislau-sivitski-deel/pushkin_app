@@ -30,7 +30,6 @@ TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
   answ = results.first.content
   answ = answ.split(/[\n]/)
 
-
   answ.each do |str|
     if str.include?(str2) && str.include?(str3)
        answ = str
@@ -44,16 +43,9 @@ answ = answ.strip.gsub(/[[:punct:]]\z/, '')
   end
 
 
-
-
-
-
-
-
-
-
 if params[:level] == 3
-@pos = 0
+
+  @pos = 0
  arr = @question.split('\n')
  str1 = @question.gsub('%WORD%','')
  str1 = str1.gsub('\n','')
@@ -95,8 +87,6 @@ answ[1] = answ[1].strip.gsub(/[[:punct:]]\z/, '')
 
 
 answ = answ[0] +','+answ[1]
-
-puts answ
   end
 
 
