@@ -11,13 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710111140) do
+ActiveRecord::Schema.define(version: 20150720135146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_trgm"
+
+  create_table "lines", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "poems", force: :cascade do |t|
     t.text     "title"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sortlines", force: :cascade do |t|
+    t.string   "title"
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -1,5 +1,5 @@
 
-class Poem < ActiveRecord::Base
+class Line < ActiveRecord::Base
  include PgSearch
 
  pg_search_scope :content, :against => :content

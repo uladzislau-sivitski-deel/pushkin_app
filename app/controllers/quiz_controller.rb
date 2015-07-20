@@ -11,7 +11,18 @@ TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
 
   if params[:level] == 1
   results = Poem.content(@question)
+
+
+if results[0]==nil
+  answ = results.title
+else
   answ = results.first.title
+end
+
+
+
+
+
   end
 
    if params[:level] == 2
@@ -20,7 +31,15 @@ TOKEN = '34291703b59f5c7e827d31116f0bf161'.freeze
   str3 = @question.split('%WORD%')[1]
 
   results = Poem.content(str1)
+
+
+  if results[0]==nil
+  answ = results.content
+else
   answ = results.first.content
+end
+
+
   answ = answ.split(/[\n]/)
 
   answ.each do |str|
@@ -47,7 +66,11 @@ if params[:level] == 3
 
 
  results = Poem.content(str1)
- answ = results.first.content
+ if results[0]==nil
+  answ = results.content
+else
+  answ = results.first.content
+end
  answ = answ.split(/[\n]/)
 
 str2 = arr[0].split('%WORD%')[0]
@@ -96,7 +119,11 @@ answ = answ[0] +','+answ[1]
 
 
  results = Poem.content(str1)
- answ = results.first.content
+ if results[0]==nil
+  answ = results.content
+else
+  answ = results.first.content
+end
  answ = answ.split(/[\n]/)
 
 str2 = arr[0].split('%WORD%')[0]
@@ -144,24 +171,45 @@ answ[2] = answ[2].strip.gsub(/[[:punct:]]\z/, '')
 answ = answ[0] +','+answ[1]+','+answ[2]
   end
 
+  if params[:level] == 5
 
+ results = Line.strictly_spelled_like(@question)
 
+ if results[0]==nil
+  answ = results.content
+else
+  answ = results.first.content
+end
+@question = @question.split(' ')
+answ = answ.split(' ')
+answer1 = (@question - answ).join.split(//).reject { |s| s =~ /[[:punct:]]/ }.join
+answer2 = (answ - @question).join.split(//).reject { |s| s =~ /[[:punct:]]/ }.join
+answ = answer2 +','+answer1
+  end
 
+  if params[:level] > 5
+      @question = @question.chars.sort.join
+      @question = @question.lstrip
+      @question = @question.split(//).reject { |s| s =~ /[[:punct:]]/ }.join
 
+ results = Sortline.strictly_spelled_like(@question)
 
+ if results[0]==nil
+  answ = results.id
+else
+  answ = results.first.id
+end
 
+results = Line.find(answ)
 
+ if results[0]==nil
+  answ = results.content
+else
+  answ = results.first.content
+end
 
-
-
-
-
-
-
-
-
-
-
+answ = answ.split(//).reject { |s| s =~ /[[:punct:]]/ }.join
+  end
 
 
    uri = URI("http://pushkin.rubyroidlabs.com/quiz")

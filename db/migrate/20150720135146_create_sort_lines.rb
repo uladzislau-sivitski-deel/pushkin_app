@@ -1,14 +1,10 @@
-class CreatePoems < ActiveRecord::Migration
+class CreateSortLines < ActiveRecord::Migration
   def change
-      create_table :poems do |t|
+    create_table :sortlines do |t|
       t.string :title
       t.text :content
 
       t.timestamps
     end
   end
-
-
-
 end
-
